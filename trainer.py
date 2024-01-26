@@ -10,6 +10,9 @@ import joblib
 # Chargement du dataset depuis un fichier Excel
 df = pd.read_excel('Datasets/Clothes_filtered.xlsx')
 
+# Ajouter une ligne de données pour tester le modèle
+#df = df.append({'Brand': 'Nike', 'Size': 'M', 'Status': 'Neuf avec étiquette', 'Type': 'Tshirt', 'Price': 30}, ignore_index=True)
+
 # Transformation des données catégoriques en variables numériques
 df['Brand'] = df['Brand'].map({
     'Nike': 1, 'adidas': 2, 'Carhartt': 3, 'The North Face': 4, 'Tommy Hilfiger': 5, 
@@ -28,9 +31,10 @@ df['Size'] = df['Size'].map({
 df['Status'] = df['Status'].map({"Neuf avec étiquette": 1, "Neuf sans étiquette": 2, "Très bon état": 3, "Bon état": 4, "Satifaisant": 5})
 df['Type'] = df['Type'].map({"Coast": 1, "Pant": 2, "Sweet": 3, "Tshirt":4})  # Ajout de la colonne 'Type'
 
-# Transformation des données catégoriques en variables indicatrices
+# Transformation des données catégories en variables indicatrices
 df = pd.get_dummies(df, columns=['Brand', 'Size', 'Status', 'Type'], drop_first=True)
 
+print(df.head())
 
 # Séparation des données en features (X) et target (y)
 X = df.drop(['Price'], axis=1)  # Modification ici
@@ -54,12 +58,12 @@ print(f"Random Forest Model saved at {model_path}")
 predictions = model.predict(X_test)
 
 print('Prédiction sur l\'ensemble de test')
-print(predictions)
+#print(predictions)
 
 
 bests = []  # liste des meilleurs prédictions   
 for i in range(len(predictions)):
-    print(f"Prédiction : {predictions[i].round(1)} - Valeur attendue : {y_test.iloc[i]} - Différence : {predictions[i] - y_test.iloc[i].round(2)}")
+    #print(f"Prédiction : {predictions[i].round(1)} - Valeur attendue : {y_test.iloc[i]} - Différence : {predictions[i] - y_test.iloc[i].round(2)}")
     if(predictions[i] - y_test.iloc[i].round(2) > 5):
         if(len(bests) < 5):
             bests.append(predictions[i].round(1))
