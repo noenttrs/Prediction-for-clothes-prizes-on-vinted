@@ -34,6 +34,9 @@ df_test['Size'] = df_test['Size'].map({
 df_test['Status'] = df_test['Status'].map({"Neuf": 1, "Neuf sans étiquette": 2, "Très bon état": 3, "Bon état": 4, "Satifaisant": 5})
 df_test['Type'] = df_test['Type'].map({"Coast": 1, "Pant": 2, "Sweet": 3, "Tshirt":4})  # Ajout de la colonne 'Type'
 
+# Transformation des données catégoriques en variables indicatrices
+df = pd.get_dummies(df_test, columns=['Brand', 'Size', 'Status', 'Type'], drop_first=True)
+
 
 # Création d'un DataFrame à partir des données de test
 df_test = pd.DataFrame(df_test)
