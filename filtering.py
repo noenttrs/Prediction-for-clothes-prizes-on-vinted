@@ -25,5 +25,3 @@ print(dataset['Size'].unique())
 
 vêtements_filtres.to_excel('Clothes_filtered.xlsx', index=False)
 
-# Afficher les vêtements filtrés
-print(vêtements_filtres)

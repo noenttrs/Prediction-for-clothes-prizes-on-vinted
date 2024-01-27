@@ -29,6 +29,8 @@ class ClothesPricePredictor:
         # Récupérer la dernière ligne du DataFrame (nouvelle entrée utilisateur)
         user_input = df.drop(df.index[:-1])
 
+        print(user_input)
+
         return user_input
 
     def predict_price(self, brand, size, status, cloth_type, price):
@@ -41,8 +43,6 @@ class ClothesPricePredictor:
         return predictions[0]
     
     
-
-"""# Exemple d'utilisation de la classe ClothesPricePredictor
 if __name__ == "__main__":
     predictor = ClothesPricePredictor()
 
@@ -55,4 +55,4 @@ if __name__ == "__main__":
 
     # Prédiction du prix
     predicted_price = predictor.predict_price(brand, size, status, cloth_type, price)
-    print(f"Estimated Price: {predicted_price} €")"""
+    print(f"Estimated Price: {predicted_price} €")
